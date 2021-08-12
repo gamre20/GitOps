@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: prodapp
-        image: https://quay.io/repository/rnare/liberty-rest:latest
+        image: quay.io/rnare/liberty-rest:latest
         resources: {}
         ports:
         - containerPort: 9080
