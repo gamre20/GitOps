@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prodApp
+  name: prodapp
 spec:
   selector:
     matchLabels:
-      app: prodApp
+      app: prodapp
   template:
     metadata:
       labels:
-        app: prodApp
+        app: prodapp
     spec:
       containers:
-      - name: prodApp
+      - name: prodapp
         image: https://quay.io/repository/rnare/liberty-rest:latest
         resources: {}
         ports:
