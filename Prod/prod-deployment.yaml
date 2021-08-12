@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prodapp
+spec:
+  selector:
+    matchLabels:
+      app: prodapp
+  template:
+    metadata:
+      labels:
+        app: prodapp
+    spec:
+      containers:
+      - name: prodapp
+        image: quay.io/rnare/liberty-rest:latest
+        resources: {}
+        ports:
+        - containerPort: 9080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prodapp-svc
+spec:
+  selector:
+    app: prodapp
+  ports:
+  - port: 9080
+    targetPort: 9080
+---
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: prodapp-route
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: prodapp-svc
+    weight: 100
