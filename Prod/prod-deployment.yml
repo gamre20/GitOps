@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prodApp
+spec:
+  selector:
+    matchLabels:
+      app: prodApp
+  template:
+    metadata:
+      labels:
+        app: prodApp
+    spec:
+      containers:
+      - name: prodApp
+        image: https://quay.io/repository/rnare/liberty-rest:latest
+        resources: {}
+        ports:
+        - containerPort: 9080
