@@ -1,56 +1,48 @@
-kind: Deployment
-apiVersion: apps/v1
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
 metadata:
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: '*'
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"salesforce-webhook-ingestor:1.0.0-SNAPSHOT","namespace":"integration"},"fieldPath":"spec.template.spec.containers[?(@.name==\"salesforce-webhook-ingestor\")].image","pause":"false"}]
-  name: salesforce-webhook-ingestor
-
-  
-  namespace: integration
   labels:
-    app: salesforce-webhook-ingestor
-    app.kubernetes.io/component: salesforce-webhook-ingestor
-    app.kubernetes.io/instance: salesforce-webhook-ingestor
-    app.kubernetes.io/name: salesforce-webhook-ingestor
-    app.kubernetes.io/part-of: salesforce-webhook-ingestor-app
-    app.openshift.io/runtime: quarkus
-    app.openshift.io/runtime-namespace: integration
-    app.openshift.io/runtime-version: 1.0.0-SNAPSHOT
+    operators.coreos.com/servicemeshoperator.openshift-operators: ''
+  name: servicemeshoperator
+  namespace: openshift-operators
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: salesforce-webhook-ingestor
-  template:
-    metadata:
-      labels:
-        app: salesforce-webhook-ingestor
-        deploymentconfig: salesforce-webhook-ingestor
-    spec:
-      containers:
-        - name: salesforce-webhook-ingestor
-          image: >-
-            image-registry.openshift-image-registry.svc:5000/integration/salesforce-webhook-ingestor@sha256:0559b656cc7e937a633f4590422f9fa8a7dbe1c810ee19b4ff19e1f1a5741320
-          ports:
-            - containerPort: 8080
-              protocol: TCP
-            - containerPort: 8443
-              protocol: TCP
-            - containerPort: 8778
-              protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
-      dnsPolicy: ClusterFirst
-      securityContext: {}
-      schedulerName: default-scheduler
-      imagePullSecrets: []
-  revisionHistoryLimit: 10
-  progressDeadlineSeconds: 600
-  paused: false
+  channel: stable
+  installPlanApproval: Automatic
+  name: servicemeshoperator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: servicemeshoperator.v2.1.0
 
+---
+
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/elasticsearch-operator.openshift-operators-redhat: ''
+  name: elasticsearch-operator
+  namespace: openshift-operators-redhat
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: elasticsearch-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: elasticsearch-operator.5.2.2-21
+
+---
+
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/jaeger-product.openshift-operators: ''
+  name: jaeger-product
+  namespace: openshift-operators
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: jaeger-product
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: jaeger-operator.v1.24.1
