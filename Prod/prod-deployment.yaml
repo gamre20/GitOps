@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: prodapp
   annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   selector:
     matchLabels:
