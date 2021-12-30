@@ -1,0 +1,45 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  labels:
+    machine.openshift.io/cluster-api-cluster: test-oc-5hpc7
+    machine.openshift.io/cluster-api-machine-role: infra
+    machine.openshift.io/cluster-api-machine-type: infra
+  name: test-oc-5hpc7-infra
+  namespace: openshift-machine-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: test-oc-5hpc7
+      machine.openshift.io/cluster-api-machineset: test-oc-5hpc7-infra
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: test-oc-5hpc7
+        machine.openshift.io/cluster-api-machine-role: infra
+        machine.openshift.io/cluster-api-machine-type: infra
+        machine.openshift.io/cluster-api-machineset: test-oc-5hpc7-infra
+    spec:
+      metadata: {}
+      providerSpec:
+        value:
+          cluster_id: <ovirt_cluster_id>
+          userDataSecret:
+            name: <data_name>
+          cpu:
+            cores: 4
+            sockets: 1
+            threads: 1
+          name: ''
+          credentialsSecret:
+            name: <secret_name>
+          metadata:
+          template_name: <ovirt_template_name>
+          memory_mb: 16348
+          kind: OvirtMachineProviderSpec
+          os_disk:
+            size_gb: 120
+          type: server
+          id: ''
+          apiVersion: ovirtproviderconfig.machine.openshift.io/v1beta1
