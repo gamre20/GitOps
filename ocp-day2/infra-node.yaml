@@ -39,7 +39,7 @@ spec:
           memory_mb: 16348
           kind: OvirtMachineProviderSpec
           os_disk:
-            size_gb: 120
+            size_gb: 130
           type: server
           id: ''
           apiVersion: ovirtproviderconfig.machine.openshift.io/v1beta1
