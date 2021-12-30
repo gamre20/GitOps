@@ -26,7 +26,7 @@ spec:
         value:
           cluster_id: <ovirt_cluster_id>
           userDataSecret:
-            name: <data_name>
+            name: worker-user-data
           cpu:
             cores: 4
             sockets: 1
