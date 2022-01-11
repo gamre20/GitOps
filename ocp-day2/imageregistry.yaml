@@ -11,7 +11,7 @@ spec:
           - openshift-image-registry
           topologyKey: kubernetes.io/hostname
         weight: 100
-  httpSecret: <>
+  httpSecret: 101a33a94491b4901e6b27207a29fde6f60caba1539cf9bb1c4f797d0c4afed0ed4daf25b127e05e13d637320320f65f9c1e76440d86b045893f8cefb908e4f3
   logLevel: Normal
   managementState: Managed
   nodeSelector:
