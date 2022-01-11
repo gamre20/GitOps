@@ -8,7 +8,7 @@ metadata:
   name: ocp4-jxkk4-infra
   namespace: openshift-machine-api
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: ocp4-jxkk4
@@ -30,14 +30,14 @@ spec:
           userDataSecret:
             name: worker-user-data
           cpu:
-            cores: 2
+            cores: 4
             sockets: 1
             threads: 1
           credentialsSecret:
             name: ovirt-credentials
           metadata:
           template_name: ocp4-jxkk4-rhcos
-          memory_mb: 4096
+          memory_mb: 16348
           kind: OvirtMachineProviderSpec
           os_disk:
             size_gb: 80
