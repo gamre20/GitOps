@@ -24,9 +24,6 @@ spec:
       metadata:
         labels:
           node-role.kubernetes.io/infra: ""
-      taints:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/infra
       providerSpec:
         value:
           cluster_id: 4623d003-2753-41e7-a16d-be106cd6622f
