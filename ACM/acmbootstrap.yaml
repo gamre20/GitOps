@@ -1,14 +1,10 @@
-kind: Project
-apiVersion: project.openshift.io/v1
-metadata:
-  name: open-cluster-management
-
----
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
   name: open-cluster-management-2w9m9
   namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   targetNamespaces:
     - open-cluster-management
@@ -21,6 +17,8 @@ metadata:
     operators.coreos.com/advanced-cluster-management.open-cluster-management: ''
   name: advanced-cluster-management
   namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   channel: release-2.4
   installPlanApproval: Automatic
@@ -36,4 +34,6 @@ kind: MultiClusterHub
 metadata:
   name: multiclusterhub
   namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec: {}
