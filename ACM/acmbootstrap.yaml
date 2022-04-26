@@ -1,9 +1,3 @@
-kind: Project
-apiVersion: project.openshift.io/v1
-metadata:
-  name: open-cluster-management
-
----
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
