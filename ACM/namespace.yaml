@@ -2,3 +2,5 @@ kind: Project
 apiVersion: project.openshift.io/v1
 metadata:
   name: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
