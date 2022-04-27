@@ -1,15 +1,3 @@
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: open-cluster-management-2w9m9
-  namespace: open-cluster-management
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-spec:
-  targetNamespaces:
-    - open-cluster-management
-
----
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -26,14 +14,3 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: advanced-cluster-management.v2.4.3
-
----
-
-apiVersion: operator.open-cluster-management.io/v1
-kind: MultiClusterHub
-metadata:
-  name: multiclusterhub
-  namespace: open-cluster-management
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-spec: {}
