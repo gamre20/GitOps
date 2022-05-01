@@ -17,3 +17,4 @@ metadata:
 status:
   decisions:
     - clusterName: local-cluster
+      reason: ''
