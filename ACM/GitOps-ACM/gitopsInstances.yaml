@@ -4,7 +4,7 @@ metadata:
   name: argo-acm-importer
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   argoServer:
     cluster: notused
