@@ -3,6 +3,8 @@ kind: OAuth
 metadata:
   name: cluster
 spec:
+  tokenConfig:
+    accessTokenInactivityTimeout: 300s
   identityProviders:
   - htpasswd:
       fileData:
