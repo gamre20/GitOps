@@ -6,5 +6,4 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-spec:
-  imagePullSecret: rh-secret
+spec: {}
