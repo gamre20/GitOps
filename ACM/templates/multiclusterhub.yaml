@@ -2,7 +2,7 @@ apiVersion: operator.open-cluster-management.io/v1
 kind: MultiClusterHub
 metadata:
   name: multiclusterhub
-  namespace: open-cluster-management
+  namespace: {{ .Values.metadata.namespace }}
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

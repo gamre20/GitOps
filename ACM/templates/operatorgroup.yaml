@@ -1,10 +1,10 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: open-cluster-management-2w9m9
-  namespace: open-cluster-management
+  name: {{ .Values.metadata.namespace }}-2w9m9
+  namespace: {{ .Values.metadata.namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   targetNamespaces:
-    - open-cluster-management
+    - {{ .Values.metadata.namespace }}
