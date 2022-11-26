@@ -7,5 +7,5 @@ metadata:
   namespace: open-cluster-management
 
 spec:
-  channel: release-2.4
-  startingCSV: advanced-cluster-management.v2.4.3
+  channel: release-2.6
+  startingCSV: advanced-cluster-management.v2.6.2
