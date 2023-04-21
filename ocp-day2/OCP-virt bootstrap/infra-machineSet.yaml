@@ -2,26 +2,26 @@
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
-  name: <machineSet-Name>   
+  name: ocp-virthost1   
   namespace: openshift-machine-api
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
-    machine.openshift.io/cluster-api-cluster: <machineSet-Name>
+    machine.openshift.io/cluster-api-cluster: ocp-virthost1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: <machineSet-Name>
-      machine.openshift.io/cluster-api-machineset: <machineSet-Name>
+      machine.openshift.io/cluster-api-cluster: ocp-virthost1
+      machine.openshift.io/cluster-api-machineset: ocp-virthost1
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: <machineSet-Name>
+        machine.openshift.io/cluster-api-cluster: ocp-virthost1
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: <machineSet-Name>
+        machine.openshift.io/cluster-api-machineset: ocp-virthost1
     spec:
       lifecycleHooks: {}
       metadata: {}
