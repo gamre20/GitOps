@@ -22,5 +22,46 @@ spec:
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
         machine.openshift.io/cluster-api-machineset: <machineSet-Name>
-    spec: {}  ## Copy and replace the spec from one of the existing MachineSet.
-              ## Make sure to change the instance type as well to your desire one.
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          userDataSecret:
+            name: worker-user-data
+          placement:
+            availabilityZone: us-east-2a
+            region: us-east-2
+          credentialsSecret:
+            name: aws-cloud-credentials
+          instanceType: m5.xlarge
+          metadata:
+            creationTimestamp: null
+          blockDevices:
+            - ebs:
+                encrypted: true
+                iops: 2000
+                kmsKey:
+                  arn: ''
+                volumeSize: 500
+                volumeType: io1
+          securityGroups:
+            - filters:
+                - name: 'tag:Name'
+                  values:
+                    - hubcluster-pg667-worker-sg
+          kind: AWSMachineProviderConfig
+          tags:
+            - name: kubernetes.io/cluster/hubcluster-pg667
+              value: owned
+          deviceIndex: 0
+          ami:
+            id: ami-049d248f9e0f4ee7a
+          subnet:
+            filters:
+              - name: 'tag:Name'
+                values:
+                  - hubcluster-pg667-private-us-east-2a
+          apiVersion: awsproviderconfig.openshift.io/v1beta1
+          iamInstanceProfile:
+            id: hubcluster-pg667-worker-profile
