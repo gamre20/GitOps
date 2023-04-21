@@ -1,0 +1,23 @@
+### AWS machineSet template ###
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: <machineSet-Name>   
+  namespace: openshift-machine-api
+  labels:
+    machine.openshift.io/cluster-api-cluster: <machineSet-Name>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: <machineSet-Name>
+      machine.openshift.io/cluster-api-machineset: <machineSet-Name>
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: <machineSet-Name>
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: <machineSet-Name>
+    spec: {}  ## Copy and replace the spec from one of the existing MachineSet.
+              ## Make sure to change the instance type as well to your desire one.
