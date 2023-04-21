@@ -5,6 +5,9 @@ metadata:
   annotations:
     deployOVS: 'false'
   namespace: openshift-cnv
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   liveMigrationConfig:
     completionTimeoutPerGiB: 800
