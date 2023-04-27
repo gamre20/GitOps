@@ -8,4 +8,4 @@ metadata:
 
 spec:
   channel: release-2.7
-  startingCSV: advanced-cluster-management.v2.7.0
+  startingCSV: advanced-cluster-management.v2.6.0
