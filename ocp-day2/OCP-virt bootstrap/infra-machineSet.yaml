@@ -22,7 +22,7 @@ spec:
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
         machine.openshift.io/cluster-api-machineset: ocp-virthost1
-    spec:
+     spec:
       lifecycleHooks: {}
       metadata: {}
       providerSpec:
@@ -49,10 +49,10 @@ spec:
             - filters:
                 - name: 'tag:Name'
                   values:
-                    - hubcluster-gxf92-worker-sg
+                    - hubcluster-m6q4d-worker-sg
           kind: AWSMachineProviderConfig
           tags:
-            - name: kubernetes.io/cluster/hubcluster-gxf92
+            - name: kubernetes.io/cluster/hubcluster-m6q4d
               value: owned
           deviceIndex: 0
           ami:
@@ -61,7 +61,7 @@ spec:
             filters:
               - name: 'tag:Name'
                 values:
-                  - hubcluster-gxf92-private-us-east-2a
+                  - hubcluster-m6q4d-private-us-east-2a
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           iamInstanceProfile:
-            id: hubcluster-gxf92-worker-profile
+            id: hubcluster-m6q4d-worker-profile
