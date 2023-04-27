@@ -34,7 +34,7 @@ spec:
             region: us-east-2
           credentialsSecret:
             name: aws-cloud-credentials
-          instanceType: m5.2xlarge
+          instanceType: m5.xlarge
           metadata:
             creationTimestamp: null
           blockDevices:
@@ -49,10 +49,10 @@ spec:
             - filters:
                 - name: 'tag:Name'
                   values:
-                    - hubcluster-pg667-worker-sg
+                    - hubcluster-gxf92-worker-sg
           kind: AWSMachineProviderConfig
           tags:
-            - name: kubernetes.io/cluster/hubcluster-pg667
+            - name: kubernetes.io/cluster/hubcluster-gxf92
               value: owned
           deviceIndex: 0
           ami:
@@ -61,7 +61,7 @@ spec:
             filters:
               - name: 'tag:Name'
                 values:
-                  - hubcluster-pg667-private-us-east-2a
+                  - hubcluster-gxf92-private-us-east-2a
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           iamInstanceProfile:
-            id: hubcluster-pg667-worker-profile
+            id: hubcluster-gxf92-worker-profile
