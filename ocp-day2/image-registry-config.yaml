@@ -4,6 +4,7 @@ metadata:
   - imageregistry.operator.openshift.io/finalizer
   name: cluster
 spec:
+  defaultRoute: true
   logLevel: Normal
   managementState: Managed
   observedConfig: null
