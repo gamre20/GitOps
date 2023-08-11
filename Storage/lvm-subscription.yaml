@@ -6,7 +6,7 @@ metadata:
   name: lvms-operator
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   channel: stable-4.13
   installPlanApproval: Automatic
