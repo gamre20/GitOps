@@ -2,8 +2,12 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: sync_wave_delay
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
-  ttlSecondsAfterFinished: 100
+  ttlSecondsAfterFinished: 30
   template:
     spec:
       containers:
