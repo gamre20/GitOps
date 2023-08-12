@@ -15,3 +15,22 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: lvms-operator.v4.13.1
+  
+--- 
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-wave-delay
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+      - name: wait-60s
+        image: perl
+        command: ["sleep",  "60"]
+      restartPolicy: Never
