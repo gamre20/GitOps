@@ -6,7 +6,8 @@ metadata:
   name: odf-operator
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   channel: stable-4.13
   installPlanApproval: Automatic
