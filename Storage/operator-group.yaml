@@ -4,7 +4,6 @@ metadata:
   name: openshift-storage-operatorgroup
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "0"
 spec:
   targetNamespaces:
