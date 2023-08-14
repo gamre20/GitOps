@@ -4,7 +4,6 @@ metadata:
   name: lvmcluster-0
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/sync-wave: "4"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
