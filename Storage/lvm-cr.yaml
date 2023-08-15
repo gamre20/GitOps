@@ -30,5 +30,5 @@ spec:
       containers:
       - name: wait-60s
         image: perl
-        command: ["sleep",  "90"]
+        command: ["sleep",  "120"]
       restartPolicy: Never
