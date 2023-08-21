@@ -14,3 +14,11 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: odf-operator.v4.13.1-rhodf
+---
+apiVersion: operator.openshift.io/v1
+kind: Console
+metadata:
+  name: cluster
+spec:
+  plugins:
+  - odf-console
