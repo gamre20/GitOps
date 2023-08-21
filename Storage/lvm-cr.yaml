@@ -28,7 +28,7 @@ spec:
   template:
     spec:
       containers:
-      - name: wait-60s
+      - name: wait-pod
         image: perl
         command: ["sleep",  "120"]
       restartPolicy: Never
