@@ -12,6 +12,8 @@ spec:
   feature_volume_populator: 'true'
   
 ---
+# adding a wait time for resources to settle after a completed installation of the Operator.
+
 apiVersion: batch/v1
 kind: Job
 metadata:
