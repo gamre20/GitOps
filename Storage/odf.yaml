@@ -7,6 +7,7 @@ metadata:
   namespace: openshift-storage
   annotations:
     argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   channel: stable-4.13
   installPlanApproval: Automatic
@@ -19,6 +20,8 @@ apiVersion: operator.openshift.io/v1
 kind: Console
 metadata:
   name: cluster
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   plugins:
   - odf-console
