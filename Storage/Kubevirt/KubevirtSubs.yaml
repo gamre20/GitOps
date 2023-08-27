@@ -14,3 +14,22 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace079641
   startingCSV: kubevirt-hyperconverged-operator.v4.13.3
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-wave-delay-
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "14"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+      - name: wait-pod
+        image: perl
+        command: ["sleep",  "180"]
+      restartPolicy: Never
