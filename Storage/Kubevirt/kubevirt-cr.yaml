@@ -5,6 +5,7 @@ metadata:
   namespace: openshift-cnv
   annotations:
     argocd.argoproj.io/sync-wave: "15"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec: {}
 ---
 # adding a wait time for resources to settle after a completed installation of the Operator.
