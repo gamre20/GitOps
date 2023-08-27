@@ -5,6 +5,7 @@ metadata:
   namespace: openshift-mtv
   annotations:
     argocd.argoproj.io/sync-wave: "9"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   olm_managed: true
   feature_must_gather_api: 'true'
