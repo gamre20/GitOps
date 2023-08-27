@@ -1,0 +1,36 @@
+apiVersion: lvm.topolvm.io/v1alpha1
+kind: LVMCluster
+metadata:
+  name: lvmcluster-0
+  namespace: openshift-storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  storage:
+    deviceClasses:
+      - thinPoolConfig:
+          sizePercent: 90
+          name: thin-pool-1
+          overprovisionRatio: 10
+        name: vg1
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-wave-delay-
+  namespace: openshift-storage
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+      - name: wait-pod
+        image: perl
+        command: ["sleep",  "300"]
+      restartPolicy: Never
