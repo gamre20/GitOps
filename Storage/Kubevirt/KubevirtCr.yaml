@@ -3,7 +3,9 @@ kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
   namespace: openshift-cnv
-spec:
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec: {}
 ---
 # adding a wait time for resources to settle after a completed installation of the Operator.
 
@@ -13,7 +15,7 @@ metadata:
   generateName: sync-wave-delay-
   annotations:
     argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "16"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   ttlSecondsAfterFinished: 30
