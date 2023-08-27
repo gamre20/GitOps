@@ -8,7 +8,6 @@ metadata:
 spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  installPlanApproval: Automatic
   name: kubevirt-hyperconverged
   startingCSV: kubevirt-hyperconverged-operator.v4.13.3
   channel: "stable"
