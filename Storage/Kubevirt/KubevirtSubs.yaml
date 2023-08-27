@@ -5,6 +5,8 @@ metadata:
     operators.coreos.com/kubevirt-hyperconverged.openshift-cnv: ''
   name: kubevirt-hyperconverged
   namespace: openshift-cnv
+  annotations:
+    argocd.argoproj.io/sync-wave: "13"
 spec:
   channel: stable
   installPlanApproval: Automatic
