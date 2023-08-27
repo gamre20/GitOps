@@ -31,5 +31,5 @@ spec:
       containers:
       - name: wait-pod
         image: perl
-        command: ["sleep",  "120"]
+        command: ["sleep",  "300"]
       restartPolicy: Never
