@@ -5,6 +5,8 @@ metadata:
     operators.coreos.com/mtv-operator.openshift-mtv: ''
   name: mtv-operator
   namespace: openshift-mtv
+  annotations:
+    argocd.argoproj.io/sync-wave: "7"
 spec:
   channel: release-v2.4
   installPlanApproval: Automatic
