@@ -14,3 +14,23 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: mtv-operator.v2.4.2
+
+  ---
+
+  apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-wave-delay-
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "8"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+      - name: wait-pod
+        image: perl
+        command: ["sleep",  "120"]
+      restartPolicy: Never
