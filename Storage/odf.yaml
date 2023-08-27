@@ -6,7 +6,6 @@ metadata:
   name: odf-operator
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   channel: stable-4.13
