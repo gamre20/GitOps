@@ -9,7 +9,7 @@ metadata:
 spec:
   olm_managed: true
   feature_must_gather_api: 'true'
-  feature_ui: 'false'
+  feature_ui: 'tue'
   feature_ui_plugin: 'true'
   feature_validation: 'true'
   feature_volume_populator: 'true'
