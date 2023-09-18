@@ -2,7 +2,7 @@ apiVersion: lvm.topolvm.io/v1alpha1
 kind: LVMCluster
 metadata:
   name: lvmcluster-0
-  namespace: openshift-storage
+  namespace: {{ .Values.metadata.namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
