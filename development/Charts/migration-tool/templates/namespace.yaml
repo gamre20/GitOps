@@ -1,0 +1,7 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: {{ .Values.metadata.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec: {}

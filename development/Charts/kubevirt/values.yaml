@@ -1,0 +1,12 @@
+# Default values for lvm-storage.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+metadata:
+  name: kubevirt-hyperconverged
+  namespace: openshift-cnv
+
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  startingCSV: kubevirt-hyperconverged-operator.v4.13.3
