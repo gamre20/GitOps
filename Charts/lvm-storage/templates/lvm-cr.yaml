@@ -3,9 +3,7 @@ kind: LVMCluster
 metadata:
   name: lvmcluster-0
   namespace: {{ .Values.metadata.namespace }}
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  {{- template "lvm.sync-options.labels"}}  
 spec:
   storage:
     deviceClasses:
