@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: ''
+    namespace: default
     server: {{ .Values.spec.destination.server }}
   source:
     path: Charts/migration-tool
