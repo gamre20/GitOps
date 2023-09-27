@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lvm
+spec:
+  destination:
+    name: ''
+    namespace: ''
+    server: {{ .Values.spec.destination.server }}
+  source:
+    path: Charts/lvm-storage
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  sources: []
+  project: default
+
