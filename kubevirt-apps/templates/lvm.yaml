@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: openshift-storage
     server: {{ .Values.spec.destination.server }}
   source:
     path: Charts/lvm-storage

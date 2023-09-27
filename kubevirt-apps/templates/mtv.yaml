@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: openshift-mtv
     server: {{ .Values.spec.destination.server }}
   source:
     path: Charts/migration-tool

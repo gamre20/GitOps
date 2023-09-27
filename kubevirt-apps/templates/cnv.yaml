@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: openshift-cnv
     server: {{ .Values.spec.destination.server }}
   source:
     path: Charts/kubevirt
