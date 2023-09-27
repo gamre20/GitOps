@@ -9,5 +9,4 @@ spec:
     path: Charts/migration-tool
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-  sources: []
   project: default
