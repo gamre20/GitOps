@@ -2,8 +2,8 @@ apiVersion: forklift.konveyor.io/v1beta1
 kind: ForkliftController
 metadata:
   name: forklift-controller
-  namespace: openshift-mtv
-  {{- template "lvm.sync-options.labels"}}
+  namespace: {{ .Values.metadata.namespace }}
+  {{- template "mtv.sync-options.labels"}}
 spec:
   olm_managed: 'true'
   feature_must_gather_api: 'true'
