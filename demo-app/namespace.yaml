@@ -1,0 +1,11 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    app.openshift.io/vcs-uri: https://github.com/gamre20/GitOps.git
+    app.openshift.io/vcs-ref: main
+  labels:
+    argocd.argoproj.io/managed-by: "openshift-gitops"
+  name: demo-project
+spec: {}

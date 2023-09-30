@@ -6,7 +6,7 @@ metadata:
   name: bgd
   namespace: demo-project
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: 1
   selector:

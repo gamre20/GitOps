@@ -6,7 +6,7 @@ metadata:
   name: bgd
   namespace: demo-project
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   port:
     targetPort: 8080
