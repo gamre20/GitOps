@@ -1,8 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  annotations:
-    argocd.argoproj.io/hook: PostSync
   name: vm-migration-tool-operator
   namespace: {{ .Values.metadata.namespace }}
   {{- template "argocd.finalizer.labels"}}
