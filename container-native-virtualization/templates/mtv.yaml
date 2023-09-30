@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+  name: vm-migration-tool-operator
+  namespace: {{ .Values.metadata.namespace }}
+  {{- template "argocd.finalizer.labels"}}
+spec:
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: openshift-mtv
+  source:
+    path: Charts/migration-tool
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  project: default
