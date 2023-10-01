@@ -1,9 +1,0 @@
-kind: Project
-apiVersion: project.openshift.io/v1
-metadata:
-  labels:
-    argocd.argoproj.io/managed-by: "openshift-gitops"
-  name: openshift-cnv
-  annotations:
-    argocd.argoproj.io/sync-wave: "11"
-spec: {}
