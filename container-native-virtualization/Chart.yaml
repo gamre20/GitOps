@@ -1,6 +1,6 @@
 apiVersion: v2
 name: container-native-virtualization
-description: Apps of Apps pattern for deploying kubervirt a related tool needed for managing the lifecycle of VMs in Openshift
+description: Apps of Apps pattern for deploying kubervirt and related tool needed for managing the lifecycle of VMs in Openshift. Tools include an LVM Operator that leverage local storage for dynamic PVs provisioning, the Kubevirt Operator and a Migration tool kit Operator to migrate VMs from third party providers into Openshift.
 
 # A chart can be either an 'application' or a 'library' chart.
 #
