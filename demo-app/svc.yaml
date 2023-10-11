@@ -4,7 +4,7 @@ metadata:
   labels:
     app: bgd
   name: bgd
-  namespace: demo-project
+  namespace: dev-env
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
