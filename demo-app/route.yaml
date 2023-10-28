@@ -1,19 +1,21 @@
-apiVersion: route.openshift.io/v1
 kind: Route
+apiVersion: route.openshift.io/v1
 metadata:
-  labels:
-    app: bgd
   name: bgd
   namespace: dev-env
   annotations:
     argocd.argoproj.io/sync-wave: "3"
+  labels:
+    app: bgd
 spec:
-  port:
-    targetPort: 8080
-  tls:
-    termination: passthrough
-    insecureEdgeTerminationPolicy: None
+  host: bgd.apps.sno.homelab.com
   to:
     kind: Service
     name: bgd
     weight: 100
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None
