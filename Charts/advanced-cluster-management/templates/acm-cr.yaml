@@ -1,0 +1,9 @@
+apiVersion: operator.open-cluster-management.io/v1
+kind: MultiClusterHub
+metadata:
+  name: multiclusterhub
+  namespace: {{ .Values.metadata.namespace }}
+  {{- template "acm.sync-options.labels"}}
+spec:
+  availabilityConfig: Basic
+#  imagePullSecret: rh-image-secret => add secret to manage third party clusters.
