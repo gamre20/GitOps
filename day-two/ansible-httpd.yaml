@@ -1,4 +1,4 @@
-- name: Install httpd
+- name: Install Httpd
   hosts: all
 
   tasks:
