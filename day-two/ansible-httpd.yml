@@ -1,0 +1,8 @@
+- name: Install httpd
+  hosts: all
+
+  tasks:
+  - name: Ensure apache is at the latest version and present
+    ansible.builtin.yum:
+      name: httpd
+      state: latest
