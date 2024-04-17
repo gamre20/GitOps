@@ -6,7 +6,7 @@ metadata:
   name: bgd
   namespace: dev-env
   # annotations:
-  #   argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   ports:
   - port: 8080
@@ -14,3 +14,22 @@ spec:
     targetPort: 8080
   selector:
     app: bgd
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-wave-delay-
+  namespace: dev-env
+  annotations:
+    # argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+      - name: wait-pod
+        image: perl
+        command: ["sleep",  "60"]
+      restartPolicy: Never
