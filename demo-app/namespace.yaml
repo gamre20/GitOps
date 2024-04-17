@@ -2,7 +2,8 @@ kind: Project
 apiVersion: project.openshift.io/v1
 metadata:
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "0"
   labels:
     argocd.argoproj.io/managed-by: "openshift-gitops"
   name: dev-env
