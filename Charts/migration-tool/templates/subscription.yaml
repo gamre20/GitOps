@@ -12,3 +12,22 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: {{ .Values.spec.startingCSV }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-wave-delay-
+  namespace: {{ .Values.metadata.namespace }}
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      containers:
+      - name: wait-pod
+        image: perl
+        command: ["sleep",  "60"]
+      restartPolicy: Never
