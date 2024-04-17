@@ -4,7 +4,7 @@ metadata:
   name: bgd
   namespace: dev-env
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/hook: PostSync
   labels:
     app: bgd
 spec:
