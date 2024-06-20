@@ -13,7 +13,7 @@ spec:
   sourceNamespace: openshift-marketplace
   startingCSV: {{ .Values.spec.startingCSV }}
 
-  ---
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
