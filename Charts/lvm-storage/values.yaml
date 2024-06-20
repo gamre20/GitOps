@@ -7,6 +7,6 @@ metadata:
   namespace: openshift-storage
 
 spec:
-  channel: stable-4.13
+  channel: stable-4.15
   installPlanApproval: Automatic
-  startingCSV: lvms-operator.v4.13.1
+  startingCSV: lvms-operator.v4.15.4
