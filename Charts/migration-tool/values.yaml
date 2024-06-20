@@ -7,6 +7,6 @@ metadata:
   namespace: openshift-mtv
 
 spec:
-  channel: release-v2.4
+  channel: release-v2.6
   installPlanApproval: Automatic
-  startingCSV: mtv-operator.v2.4.3
+  startingCSV: mtv-operator.v2.6.2
