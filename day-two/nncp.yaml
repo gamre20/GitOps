@@ -1,0 +1,15 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+#  annotations:
+#    nmstate.io/webhook-mutating-timestamp: '1719070758992081823'
+  name: mapping
+spec:
+  desiredState:
+    ovn:
+      bridge-mappings:
+        - bridge: br-ex
+          localnet: localnet1
+          state: present
+  nodeSelector:
+    node-role.kubernetes.io/worker: ''
