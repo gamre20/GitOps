@@ -1,6 +1,6 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
-metadata:
+#metadata:
 #  annotations:
 #    nmstate.io/webhook-mutating-timestamp: '1719070758992081823'
   name: mapping
