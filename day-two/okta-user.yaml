@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: openid-okta-secret
+  namespace: openshift-config
+spec:
+  encryptedData:
+    clientSecret: AgChBcrQYvZLdQQNIaK1ExOhXFom0Mg/AJOwpake/dbBYTrV4Tqw7LrdInwvOpeityf4+BSkLJf9sZAuE/v9/uxFnf7MTWiwPkI7qXGQEUBl5xNioDD5MCpfaNX8+zfQkffG+84TyjGIgEHG3M3rxDeOJut+mzKvq4JTzJUHZwrI+8cdS8O18NDhMVuGQVxBrGmSgAF3qiFAJAxk48UdNGANmOafpKDoCgcLOj9ourXoK8ypycfMVXAAppXIHYH0CD6w/ChsqJXlVy2+7fvWlbmYW2uJ2OIpe+1UKoJQXu+PyScInXNbu/GFQc4i4tuT3eWSk7W/KK7AyZfjbduQn9zwe99sTLDqO7KjxUn5L08vPZ59UxSbMDZt1wfV41iEcswhmWHiegWC5AGLqcj/0TarX6YLiZytGX4X4xbGAb/U0qgycRqyKDFconKUqUApYo5tHilg+O9szgMRwqLt5h4cbIUnQjKJslSqUcLKbgi0FR/6y0z/rE/OxvZBiS5kbVWF//ETCHsp7+i4emhz/8ZJqhF73AViNuvhYQ4PMMgTg11RNw5Lhav6PUvHS0ASHuMRP5MV4HvGGbh+jShgo7VaHhYHTwZaFwabJ59DWRFtdbqHnbbtZ2HHPlyYsjLuigOnGDyovKnp98Pnl8ZCLy5KpErlmypVvb9uMovl5aP+2CpcQ8wvbrXTSNHBlaqC5Ejy0el5+3NgHoTsBv1lsUJ6oWkAd+rjgJtaDcNIU7xOJFfNpDlc56vk
+  template:
+    metadata:
+      creationTimestamp: null
+      name: openid-okta-secret
+      namespace: openshift-config
