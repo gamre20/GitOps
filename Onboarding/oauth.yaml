@@ -7,7 +7,7 @@ spec:
     accessTokenInactivityTimeout: 300s
   identityProviders:
     - mappingMethod: claim
-      name: Okta
+      name: okta
       openID:
         claims:
           email:
