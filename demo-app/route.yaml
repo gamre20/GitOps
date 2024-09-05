@@ -3,19 +3,16 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: bgd
   namespace: dev-env
-  annotations:
-    argocd.argoproj.io/hook: PostSync
   labels:
     app: bgd
+  annotations:
+    argocd.argoproj.io/hook: PostSync
 spec:
-  host: bgd.apps.sno.homelab.com
+  host: bgd-dev-env.apps.hubcluster.sandbox1062.opentlc.com
   to:
     kind: Service
     name: bgd
     weight: 100
   port:
     targetPort: 8080
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: None
   wildcardPolicy: None
