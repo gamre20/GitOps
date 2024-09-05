@@ -1,0 +1,28 @@
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  tokenConfig:
+    accessTokenInactivityTimeout: 300s
+  identityProviders:
+    - mappingMethod: claim
+      name: Okta
+      openID:
+        claims:
+          email:
+          - email
+          name:
+          - name
+          - email
+          preferredUsername:
+          - preferred_username
+          - email
+        clientID: 0oa2nkey38H0EA9Lp5d7
+        clientSecret:
+          name: openid-okta-secret
+        extraScopes:
+        - email
+        - profile
+        issuer: https://dev-16077174.okta.com              
+      type: OpenID
