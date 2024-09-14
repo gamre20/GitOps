@@ -1,6 +1,61 @@
-- name: Hello World
+- name: Main
   hosts: localhost
-
   tasks:
-  - debug:
-      msg: Hello World
+  - name: Load Plan
+    include_vars:
+      file: plan.yml
+      name: plan
+
+  - name: Load Workload
+    include_vars:
+      file: workload.yml
+      name: workload
+
+  - name:
+    getent:
+      database: passwd
+      key: "{{ ansible_user_id }}"
+      split: ':'
+
+  - name: Ensure SSH directory exists
+    file:
+      path: ~/.ssh
+      state: directory
+      mode: 0750
+    environment:
+      HOME: "{{ ansible_facts.getent_passwd[ansible_user_id][4] }}"
+
+  - k8s_info:
+      api_version: v1
+      kind: Secret
+      name: rhel8-ssh-credentials
+      namespace: openshift-mtv
+    register: rhel8_ssh_credentials
+
+  - debug: msg="{{rhel8_ssh_credentials}}"
+
+  - name: Create SSH key
+    copy:
+      dest: ~/.ssh/id_rsa
+      content: "{{ rhel8_ssh_credentials.resources[0].data.key | b64decode }}"
+      mode: 0600
+
+  - add_host:
+      name: "{{ workload.vm.ipaddress }}"
+      ansible_user: root
+      groups: vms
+
+  - debug: msg="{{ workload.vm.ipaddress }}"
+- hosts: vms
+  tasks:
+  # - name: Install cloud-init
+  #   dnf:
+  #     name:
+  #     - cloud-init
+  #     state: latest
+
+  - name: Create Test File
+    copy:
+      dest: ~/test.txt
+      content: "Hello World"
+      mode: 0644
