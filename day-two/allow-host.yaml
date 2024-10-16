@@ -4,7 +4,7 @@ kind: MultiNetworkPolicy
 metadata:
   name:  ingress-ipblock
   annotations:
-    k8s.v1.cni.cncf.io/policy-for: vmexamples/vlan0
+    k8s.v1.cni.cncf.io/policy-for: vmexamples/vlan0 # will need to change that accordingly
 spec:
   podSelector: {}
   policyTypes:
