@@ -41,3 +41,5 @@
       dest: ~/test.txt
       content: " Hello World "
       mode: 0644
+      
+# Maybe I can create a post hook job to install a VMs guest tool in my VM to facilitate migration?
