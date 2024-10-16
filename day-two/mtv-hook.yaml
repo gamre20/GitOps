@@ -22,7 +22,7 @@
 
   - add_host:
       name: "{{ workload.vm.ipaddress }}"
-      ansible_user: regis
+      ansible_user: regis # VMs sudo username
       ansible_password: "{{ user_cred.resources[0].data.key | b64decode }}"
       groups: vms
   # - debug: msg="{{ workload.vm.ipaddress }}" # display the ip addresses for debugging.
