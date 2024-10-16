@@ -1,0 +1,12 @@
+# deny all from the same namespace
+apiVersion: k8s.cni.cncf.io/v1beta1
+kind: MultiNetworkPolicy
+metadata:
+  name: deny-by-default
+  annotations:
+    k8s.v1.cni.cncf.io/policy-for: vmexamples/vlan0 # will need to change that accordingly
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  ingress: []
