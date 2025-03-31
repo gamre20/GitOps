@@ -1,0 +1,48 @@
+# working NNCP for an OVS bridge backed by one NIC with trunk port
+
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  annotations: {}
+  name: workload-network
+spec:
+  desiredState:
+    interfaces:
+      - bridge:
+          options:
+            stp:
+              enabled: false
+          port:
+            - name: enp2s0
+        ipv4:
+          dhcp: true
+          enabled: true
+        name: ovs-br-example   # the name of the ovs bridge
+        state: up
+        type: ovs-bridge
+    ovn:
+      bridge-mappings:
+        - bridge: ovs-br-example      # the name of the ovs bridge in spec.interfaces.bridge.name
+          localnet: localnet1 # name of your localnet. This is the port that will be connected/configured to the OVN logical switch. The same name should be used in the NAD spec.config.name
+          state: present
+
+---
+
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  annotations: {}
+  name: nad-uneven-cephalopod
+  namespace: default
+spec:
+  config: |-
+    {
+        "cniVersion": "0.4.0",
+        "name": "localnet1",   # name of the port from the OVN bridge-mappings
+        "type": "ovn-k8s-cni-overlay",
+        "mtu": 1500,
+        "netAttachDefName": "default/nad-uneven-cephalopod", # cluster wide scope for the NAD.
+        "topology": "localnet"
+    }
+
+# This NAD will not work if you have a VLAN specified in its definition. It will pick up the default VLAN setup on the switch underlay. Also, this NAD is respective to only one NIC if multipe interfaces, include their mapping in the NNCP and create a new NAD for each interface accordingly and VLAN specification will be needed at this point.
