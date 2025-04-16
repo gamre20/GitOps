@@ -1,0 +1,28 @@
+# Example of micro-segmentation policy. Traffic will ONLY be allowed by adding exceptions. Here I'm ONLY allowing traffic from the 192.168.0.0/24 subnet through port 80, 443 and 22.
+
+apiVersion: k8s.cni.cncf.io/v1beta1
+kind: MultiNetworkPolicy
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/policy-for: default/vm-net
+  name: policy-wide-pinniped
+  namespace: virtual-machines
+spec:
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 192.168.0.0/24                                   # Allowed subnet
+            except:
+              - 192.168.0.163                                      # Deny this IP
+      ports:                                                       # Open ports
+        - port: 80
+          protocol: TCP
+        - port: 443
+          protocol: TCP
+        - port: 22
+          protocol: TCP
+  podSelector:
+    matchLabels:
+      app: front-end                                               # matching VM/pod label
+  policyTypes:
+    - Ingress                                                      # applied to ingress traffic.
