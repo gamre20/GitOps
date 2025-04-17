@@ -12,8 +12,8 @@ spec:
     - from:
         - ipBlock:
             cidr: 192.168.0.0/24                                   # Allowed subnet
-            except:
-              - 192.168.0.163                                      # Deny this IP
+            # except:
+            #   - 192.168.0.163                                      # Deny this IP
       ports:                                                       # Open ports
         - port: 80
           protocol: TCP
