@@ -31,7 +31,9 @@
                 sudo mv tls.crt /etc/pki/ca-trust/source/anchors/ && sudo update-ca-trust enable
         
         - login into the registry:
-            HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
+            (optional )HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
+                   This has not been working lately. For some reason podman default to login to registry.access.redhat.com, hence resulting into an auth error when trying to push the image into the local registry since authentication was not done to begin with.
+                   
             sudo podman login -u kubeadmin -p $(oc whoami -t) default-route-openshift-image-registry.apps.cs-ent.opsgn.lan
         
         - push the vddk image into the openshift-mtv namespace:
