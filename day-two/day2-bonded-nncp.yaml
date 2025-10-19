@@ -1,4 +1,4 @@
-# The first nncp configures the bond as an interface and the second one will create an OVS bridge referencing the bond interface created.
+# The first nncp configures the bond as an interface and the second one will create an OVS bridge referencing the bond interface created. Note that MTU needs to be tagged both on the bond interface and the ovs bridge.
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
@@ -10,7 +10,7 @@ spec:
       - ipv4:
           dhcp: true
           enabled: true
-        link-aggregation:                  # Bond mode and options
+        link-aggregation:                 # Bond mode and options
           mode: 802.3ad
           options:
             lacp_rate: fast
@@ -19,6 +19,7 @@ spec:
           port:                           # Physical underlay to be bonded
             - eno12399np0
             - eno12409np1
+#        mtu: 9000                        # mtu option if needed.
         name: bond-0                      # Bond name     
         state: up
         type: bond
@@ -37,22 +38,23 @@ spec:
       - bridge:
           options: {}
           port:
-            - name: bond-0            # port reference. Need to match the name on line 22
+            - name: bond-0       # port reference. Need to match the name on line 23
         ipv4:
           dhcp: true
           enabled: true
-        name: ovs-bond
+#        mtu: 9000               # mtu option if needed.
+        name: br0                # bridge name to be referenced in the ovs.bridge-mappings config below.
         state: up
         type: ovs-bridge
     ovn:
       bridge-mappings:
-        - bridge: ovs-bond
+        - bridge: br0
           localnet: vlan406
           state: present
-        - bridge: ovs-bond
+        - bridge: br0
           localnet: vlan403
           state: present
-        - bridge: ovs-bond
+        - bridge: br0
           localnet: vlan402
           state: present
 
