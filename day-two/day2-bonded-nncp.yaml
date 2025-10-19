@@ -1,0 +1,58 @@
+# The first nncp configures the bond as an interface and the second one will create an OVS bridge referencing the bond interface created.
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  annotations:
+  name: bnd-lacp
+spec:
+  desiredState:
+    interfaces:
+      - ipv4:
+          dhcp: true
+          enabled: true
+        link-aggregation:                  # Bond mode and options
+          mode: 802.3ad
+          options:
+            lacp_rate: fast
+            miimon: '100'
+            xmit_hash_policy: layer3+4
+          port:                           # Physical underlay to be bonded
+            - eno12399np0
+            - eno12409np1
+        name: bond-0                      # Bond name     
+        state: up
+        type: bond
+
+---
+# nncp configuring the OVS bridge using the bond interface above.
+
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  annotations:
+  name: bond-trunked
+spec:
+  desiredState:
+    interfaces:
+      - bridge:
+          options: {}
+          port:
+            - name: bond-0            # port reference. Need to match the name on line 22
+        ipv4:
+          dhcp: true
+          enabled: true
+        name: ovs-bond
+        state: up
+        type: ovs-bridge
+    ovn:
+      bridge-mappings:
+        - bridge: ovs-bond
+          localnet: vlan406
+          state: present
+        - bridge: ovs-bond
+          localnet: vlan403
+          state: present
+        - bridge: ovs-bond
+          localnet: vlan402
+          state: present
+
