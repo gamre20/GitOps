@@ -20,7 +20,7 @@
     # get registry route end-point:
         oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}'
    
-# Upload an image to the internal registry.
+# Upload an image to the internal registry with Self signed CA
 
     # login into one of your nodes and trust the cluster default certificate:
 
