@@ -1,6 +1,6 @@
 Deploy portworx on Openshift with pure flash array.
 
-# Need to patch machineconfig operator to enable multipathing in coreOS if not already enabled:
+# Create a machineconfig to enable multipathing in coreOS if not already enabled:
     https://github.com/cjkennedy1972/px-ocp-mco-multipath/blob/master/px-ocp-mco-multipathd.yaml
 
 # Important architecture decision affecting your deployment
