@@ -37,4 +37,4 @@
             sudo podman login -u kubeadmin -p $(oc whoami -t) default-route-openshift-image-registry.apps.cs-ent.opsgn.lan
         
         - push the vddk image into the openshift-mtv namespace:
-            podman push imageID default-route-openshift-image-registry.apps.ent.opsgn.lan/virtual-machines/vddk
+            sudo podman push imageID default-route-openshift-image-registry.apps.ent.opsgn.lan/virtual-machines/vddk
