@@ -1,0 +1,18 @@
+apiVersion: forklift.konveyor.io/v1beta1
+kind: StorageMap
+metadata:
+  name: sc-rwx-px-                                      # need generated name for unique names
+  namespace: openshift-mtv
+spec:
+  map:
+    - destination:
+        storageClass: px-rwx-rep2-netapp-fas8300
+      source:
+        id: datastore-1013                              # datastore name 
+  provider:
+    source:
+      name: mia-vsphere
+      namespace: openshift-mtv
+    destination:
+      name: host
+      namespace: openshift-mtv
