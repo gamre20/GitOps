@@ -1,27 +1,17 @@
+{{- $namespace := .Values.namespace | default "openshift-mtv" -}}
+
 apiVersion: forklift.konveyor.io/v1beta1
 kind: NetworkMap
 metadata:
-  name: vlanid-vm-name- # need generated name for unique names
-  namespace: openshift-mtv
+  name: {{ printf "%s-vlanid-vm-name" .Release.Name }}
+  namespace: {{ $namespace }}
 spec:
   map:
     - destination:
-        name: br1-vlan2616-default
-        type: multus
-        namespace: default
+        name: {{ .Values.networkDestinationName | default "br1-vlan2616-default" }}
+        type: {{ .Values.networkDestinationType | default "multus" }}
+        namespace: {{ .Values.networkDestinationNamespace | default "default" }}
       source:
-        id: dvportgroup-15004
-        name: 2616-mia-bcst-cl01-vds01-HVAdmin 
-    # - destination:
-    #     type: multus
-    #     name: <network_attachment_definition>  3 
-    #     namespace: <network_attachment_definition_namespace>  4 
-    #   source:
-    #     id: <source_network_mor>
-  provider:
-    source:
-      name: mia-vsphere
-      namespace: openshift-mtv
-    destination:
-      name: host
-      namespace: openshift-mtv
+        id: {{ .Values.networkSourceId | default "dvportgroup-15004" }}
+        name: {{ .Values.networkSourceName | default "2616-mia-bcst-cl01-vds01-HVAdmin" }}
+  {{- template "mtv.provider" }}
