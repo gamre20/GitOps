@@ -1,4 +1,4 @@
-# Working bond configuration with DHCP for Openshift installation. Mode balanced-rr does not work with my switch. I get about 50% packet loss. 
+#  Bond configuration with DHCP for Openshift installation. Bond has multiple vlans IDs.
 interfaces:
   - name: bond0
     type: bond
@@ -9,7 +9,25 @@ interfaces:
     link-aggregation:
       mode: active-backup
       options:
-        miimon: '140'
+        miimon: 100
       port:
       - enp1s0
       - enp2s0
+  - name: bond0.60
+    type: vlan
+    state: up
+    vlan:
+      base-iface: bond0
+      id: 60
+    ipv4:
+      enabled: true
+      dhcp: true
+  - name: bond0.40
+    type: vlan
+    state: up
+    vlan:
+      base-iface: bond0
+      id: 40
+    ipv4:
+      enabled: true
+      dhcp: true
