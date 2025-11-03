@@ -1,5 +1,6 @@
 - name: Main
   hosts: localhost
+  # debugger: on_failed
   tasks:
   - name: Load Plan
     include_vars:
@@ -17,13 +18,13 @@
       name: rhel8-ssh-credentials
       namespace: openshift-mtv
     register: user_cred
-  # - debug: msg="{{ user_cred.resources[0].data.key | b64decode }}" # display the decoded key for debugging.
+  # - debug: msg="{{ user_cred.resources[0].data.username | b64decode }}" # display the decoded key for debugging.
 
 
   - add_host:
       name: "{{ workload.vm.ipaddress }}"
-      ansible_user: user # VMs sudo username
-      ansible_password: "{{ user_cred.resources[0].data.key | b64decode }}"
+      ansible_user: "{{ user_cred.resources[0].data.username | b64decode }}"
+      ansible_password: "{{ user_cred.resources[0].data.password | b64decode }}"
       groups: vms
   # - debug: msg="{{ workload.vm.ipaddress }}" # display the ip addresses for debugging.
 
@@ -41,5 +42,3 @@
       dest: ~/test.txt
       content: " Hello World "
       mode: 0644
-      
-# Maybe I can create a post hook job to install a VMs guest tool in my VM to facilitate migration?
