@@ -1,31 +1,20 @@
+{{- $namespace := .Values.namespace | default "openshift-mtv" -}}
+
 apiVersion: forklift.konveyor.io/v1beta1
 kind: Plan
 metadata:
-  name: mia-audio- # need generated name for unique names
-  namespace: openshift-mtv
+  name: {{ printf "%s-mia-audio" .Release.Name }}
+  namespace: {{ $namespace }}
 spec:
-  provider:
-    source:
-      name: mia-vsphere
-      namespace: openshift-mtv
-    destination:
-      name: host
-      namespace: openshift-mtv
-  archived: false
-  skipGuestConversion: false
-  pvcNameTemplateUseGeneratedName: true. # need to check on what are the possibility to maintain the original vmdk name.
-  warm: false
-  migrateSharedDisks: true
-  useCompatibilityMode: true
-  preserveStaticIPs: true
+  {{- template "mtv.provider" }}
   map:
     network: 
-      name: mia-audio- # this reference the name created in the networkmap CR. How can I grab it with helm chart function? 
-      namespace: openshift-mtv
+      name: {{ printf "%s-vlanid-vm-name" .Release.Name }} #  need toreference the networkmap created above.
+      namespace: {{ $namespace }}
     storage:
-      name: mia-audio-sc-rwx-px # this reference the name created in the storagemap CR. How can I grab it with helm chart function?
-      namespace: openshift-mtv
-  targetNamespace: mce-vmi
+      name: {{ printf "%s-sc-rwx-px" .Release.Name }} #  need to reference the storagemap created above.
+      namespace: {{ $namespace }}
+  targetNamespace: {{ .Values.targetNamespace | default "mce-vmi" }}
   vms: 
-    - id: vm-16032             # I can probably get the ID by querying the api endpoint of vpshere.
-    - name: mia-audio-01
+    - id: {{ .Values.vmId | default "vm-16032" }}
+      name: {{ .Values.vmName | default "mia-audio-01" }}
