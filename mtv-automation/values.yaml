@@ -1,0 +1,14 @@
+targetNamespace: mce-vmi
+vmId: vm-16032
+vmName: mia-audio-01
+
+
+storageClass: px-rwx-rep2-netapp-fas8300
+datastoreId: datastore-1501
+
+
+networkDestinationName: br1-vlan2616-default
+networkDestinationType: multus
+networkDestinationNamespace: default
+networkSourceId: dvportgroup-15004
+networkSourceName: 2616-mia-bcst-cl01-vds01-HVAdmin
