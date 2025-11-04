@@ -1,20 +1,20 @@
 {{- $namespace := .Values.namespace | default "openshift-mtv" -}}
-
 apiVersion: forklift.konveyor.io/v1beta1
 kind: Plan
 metadata:
   name: {{ printf "%s-mia-audio" .Release.Name }}
   namespace: {{ $namespace }}
 spec:
-  {{- template "mtv.provider" }}
   map:
-    network: 
+    network:
       name: {{ printf "%s-vlanid-vm-name" .Release.Name }} #  need toreference the networkmap created above.
       namespace: {{ $namespace }}
     storage:
       name: {{ printf "%s-sc-rwx-px" .Release.Name }} #  need to reference the storagemap created above.
       namespace: {{ $namespace }}
+  {{- template "mtv.plan-options" }}
   targetNamespace: {{ .Values.targetNamespace | default "mce-vmi" }}
-  vms: 
+  vms:
     - id: {{ .Values.vmId | default "vm-16032" }}
       name: {{ .Values.vmName | default "mia-audio-01" }}
+  {{- template "mtv.provider" }}
