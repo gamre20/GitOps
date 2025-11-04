@@ -1,5 +1,4 @@
 {{- $namespace := .Values.namespace | default "openshift-mtv" -}}
-
 apiVersion: forklift.konveyor.io/v1beta1
 kind: NetworkMap
 metadata:
