@@ -6,7 +6,7 @@ COPY --from=cli /usr/bin/oc /usr/bin/oc
 RUN pip3 install kubernetes openshift
 RUN ansible-galaxy collection install kubernetes.core
 RUN ansible-galaxy collection install ansible.windows
-# RUN ansible-galaxy collection install community.windows
+RUN ansible-galaxy collection install chocolatey.chocolatey
 RUN chmod 777 /home/runner/.ansible && chmod 777 /home/runner/.ansible/tmp
 RUN mkdir /.ansible && chmod 777 /.ansible
 USER 65534:65534
