@@ -7,7 +7,7 @@ Deploy portworx on Openshift with pure flash array.
     https://docs.portworx.com/portworx-enterprise/reference-architectures/deployment-arch#approach-a-separate-storage-and-compute-clusters
 
 # Create a storage admin account on the flasharray for portworx's authentication:
-    https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-flasharray/install-flasharray/install-flasharray-cd#set-up-user-access-in-flasharray
+    https://docs.portworx.com/portworx-csi/install/prepare/flash-array#set-up-user-access-in-flasharray
 
 # Create a JSON file "pure.json" containing the admin api key:
     https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-flasharray/install-flasharray/install-flasharray-cd#create-a-json-configuration-file
