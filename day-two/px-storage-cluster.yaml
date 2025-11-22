@@ -51,7 +51,7 @@ spec:
 #     pxctl service kvdb members
 
 # Look for kvdb endpoints IPs:
-#     oc logs px-cluster-a26eb753-c798-4bef-81b5-63644320e348-g645r -n portworx | grep "KVDB endpoints"
+#     oc logs px-cluster-<xyz> -n portworx | grep "KVDB endpoints"
 
 # Check port connectivity on all three members:
 
