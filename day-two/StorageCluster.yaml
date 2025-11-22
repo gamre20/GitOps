@@ -1,0 +1,61 @@
+# Storage Cluster for Portworx Enterprise on OpenShift with internal KVDB on all local disks used for storage.
+# PX Version = 3.4
+# Platform = DAS/SAN
+# PX-StoreV2 = false
+# KVDB = internal         note: Not recommended for production, used dedicated disks for KVDB. Disk size is exactly 150GB
+
+# Existing file system on the drive will prevent Portworx from using the drive. Remove any existing file system via fdisk on all drives.
+# Format all drives before deploying the storageCluster.
+
+kind: StorageCluster
+apiVersion: core.libopenstorage.org/v1
+metadata:
+  name: px-cluster-a26eb753-c798-4bef-81b5-63644320e348
+  namespace: portworx
+  annotations:
+    portworx.io/is-openshift: "true"
+    portworx.io/run-on-master: "true"
+spec:
+  # deleteStrategy:              Remove everything but this for a clean uninstall & disks/cloud-drive wipe.
+  #   type: UninstallAndDelete
+  image: portworx/oci-monitor:3.4.2
+  imagePullPolicy: Always
+  kvdb:
+    internal: true
+  storage:
+    useAll: true
+  secretsProvider: k8s
+  startPort: 17001
+  stork:
+    enabled: true
+    args:
+      webhook-controller: "true"
+  runtimeOptions:
+    default-io-profile: "6"
+  csi:
+    enabled: true
+  monitoring:
+    telemetry:
+      enabled: false
+    prometheus:
+      exportMetrics: true
+  # env:
+  # - name: "PX_LOGLEVEL"             
+  #   value: "debug"
+
+
+
+# Troubleshooting connectivity issue kvdb internal mode:
+
+# Check kvdb members status :
+#     pxctl service kvdb members
+
+# Look for kvdb endpoints IPs:
+#     oc logs px-cluster-a26eb753-c798-4bef-81b5-63644320e348-g645r -n portworx | grep "KVDB endpoints"
+
+# Check port connectivity on all three members:
+
+#     nc -vz <node IP> 17016
+#     nc -vz <node IP> 17015
+
+# If port is blocked, check firewall rules between nodes.
