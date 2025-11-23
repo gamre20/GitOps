@@ -70,4 +70,4 @@ spec:
 #     nc -vz <node IP> 17016
 #     nc -vz <node IP> 17015
 
-# If port is blocked, check inbound/outbound firewall rules between nodes.
+# If port is blocked, check ingress/egress firewall rules between nodes.
