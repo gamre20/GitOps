@@ -2,9 +2,9 @@
 # PX Version = 3.4
 # Platform = DAS/SAN
 # PX-StoreV2 = false
-# KVDB = internal         note: Not recommended for production, used dedicated disks for KVDB. Disk size is exactly 150GB
+# KVDB = internal        Not recommended for prod, used dedicated disks. Disk size is exactly 150GB
 
-# Existing file system on the drive will prevent Portworx from using the drive. Remove any existing file system via fdisk on all drives.
+# Existing file system will prevent Portworx from using the disks. Remove any existing file system via fdisk on all drives.
 # Format all drives before deploying the storageCluster.
 
 kind: StorageCluster
@@ -34,18 +34,29 @@ spec:
     default-io-profile: "6"
   csi:
     enabled: true
+  # autopilot:                            # uncomment to enable autopilot with prometheus after storage cluster is up and running.
+  #   enabled: true
+  #   image: portworx/autopilot:1.3.14
+  #   providers:
+  #   - name: default
+  #     params:
+  #       url: https://<THANOS-QUERIER-HOST>
+  #     type: prometheus
   monitoring:
     telemetry:
       enabled: false
     prometheus:
+      enabled: false
       exportMetrics: true
+      alertManager:
+        enabled: false
   # env:
   # - name: "PX_LOGLEVEL"             
   #   value: "debug"
 
 
 
-# Troubleshooting connectivity issue kvdb internal mode:
+# Troubleshooting kvdb connectivity:
 
 # Check kvdb members status :
 #     pxctl service kvdb members
