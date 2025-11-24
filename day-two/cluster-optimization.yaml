@@ -1,17 +1,19 @@
 #autoSizingReserved: true   Kubelet default cpu & memory reserved is turned off and automatic resource allocation is enabled based on node capacity.
 #maxPods: 500                Increase the maximum number of pods per node to 500
-#nodeStatusMaxImages: -1     Set the maximum number of images to -1 (unlimited)
+#nodeStatusMaxImages: -1     Set the maximum number of images to -1 (unlimited) per node. Default is 50 and the scheduler may not schedule new pods if the limit is reached.
+#kubeAPIBurst & kubeAPIQPS can imporove the performance of bulk object creation at scale. The config here is double the default values to allow for higher throughput when creating large numbers of objects.
+
 apiVersion: machineconfiguration.openshift.io/v1
 kind: KubeletConfig
 metadata:
-  name: set-virt-values
+  name: cluster-optimization
 spec:
   machineConfigPoolSelector:
     matchLabels:
       pools.operator.machineconfiguration.openshift.io/master: ""
   kubeletConfig:
     autoSizingReserved: true 
-    maxPods: 500         
+    # maxPods: 500         
     nodeStatusMaxImages: -1
     kubeAPIBurst: 200
     kubeAPIQPS: 100
