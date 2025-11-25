@@ -1,8 +1,0 @@
-- name: Install Httpd
-  hosts: all
-
-  tasks:
-  - name: Ensure apache is at the latest version and present
-    ansible.builtin.yum:
-      name: httpd
-      state: present
