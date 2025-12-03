@@ -1,0 +1,26 @@
+# Okta with group claim sync
+# On okta Groups.startsWith("OKTA", "openshift-", 100). This will sync any Okta group that starts with openshift- with equivalent openshift groups
+spec:
+  identityProviders:
+  - mappingMethod: claim
+    name: okta
+    openID:
+      claims:
+        email:
+        - email
+        groups:
+        - groups
+        name:
+        - name
+        preferredUsername:
+        - email
+      clientID: <client_id>
+      clientSecret:
+        name: <okta_secret_name>
+      extraScopes:
+      - openid
+      - email
+      - profile
+      - groups
+      issuer: <issuer>
+    type: OpenID
