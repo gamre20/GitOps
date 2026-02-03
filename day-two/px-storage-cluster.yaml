@@ -16,7 +16,7 @@ metadata:
     portworx.io/is-openshift: "true"
     portworx.io/run-on-master: "true"
 spec:
-  # deleteStrategy:              Remove everything but this for a clean uninstall & disks/cloud-drive wipe.
+  # deleteStrategy:              Remove everything below but this for a clean uninstall & disks/cloud-drive wipe.
   #   type: UninstallAndDelete
   image: portworx/oci-monitor:3.4.2
   imagePullPolicy: Always
